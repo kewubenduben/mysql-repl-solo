@@ -12,7 +12,7 @@ end
 
 template "/etc/mysql/slave.conf.d/my.cnf" do
   source 'slave-my.cnf.erb'
-  notifies :restart, 'mysql_service[slave]'
+  notifies :restart, 'mysql_service[slave]', :immediately
 end
 
 require "shellwords"

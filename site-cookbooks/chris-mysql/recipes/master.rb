@@ -12,7 +12,7 @@ end
 
 template "/etc/mysql/master.conf.d/my.cnf" do
   source 'master-my.cnf.erb'
-  notifies :restart, 'mysql_service[master]'
+  notifies :restart, 'mysql_service[master]', :immediately
 end
 
 require "shellwords"
