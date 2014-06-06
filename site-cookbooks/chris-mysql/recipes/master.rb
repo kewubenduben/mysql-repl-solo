@@ -34,7 +34,7 @@ root_pass = 'decrypt_me_from_a_databag_maybe'
 root_pass = Shellwords.escape(root_pass).prepend("-p") unless root_pass.empty?
 
 execute "mysql-set-replication-master" do
-  command "/usr/bin/mysql --port 3307 #{root_pass} < #{replication_master_sql}"
+  command "/usr/bin/mysql --defaults-file=/etc/mysql/my.master.cnf #{root_pass} < #{replication_master_sql}"
   action :nothing
   subscribes :run, resources("template[#{replication_master_sql}]"), :immediately
 end

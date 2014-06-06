@@ -36,7 +36,7 @@ root_pass = 'decrypt_me_from_a_databag_maybe'
 root_pass = Shellwords.escape(root_pass).prepend("-p") unless root_pass.empty?
 
 execute "mysql-set-replication-slave" do
-  command "/usr/bin/mysql --port 3308 #{root_pass} < #{replication_slave_sql}"
+  command "/usr/bin/mysql --defaults-file=/etc/mysql/my.slave.cnf #{root_pass} < #{replication_slave_sql}"
   action :nothing
   subscribes :run, resources("template[#{replication_slave_sql}]"), :immediately
 end
