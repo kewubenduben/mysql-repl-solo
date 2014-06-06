@@ -1,4 +1,5 @@
-source "https://api.berkshelf.com"
+# source "https://api.berkshelf.com"
+site :opscode
 
 cookbook 'apt'
 cookbook 'mysql', github: 'kewubenduben/mysql'
