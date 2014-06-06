@@ -1,0 +1,22 @@
+---
+driver:
+  name: vagrant
+driver_config:
+  require_chef_omnibus: true
+  customize:
+    memory: 5120
+
+provisioner:
+  name: chef_solo
+
+platforms:
+  - name: ubuntu-12.04
+    run_list:
+    - recipe[apt]
+
+suites:
+  - name: default
+    run_list:
+      - recipe[chris-mysql::master]
+      - recipe[chris-mysql::slave]
+    attributes:
